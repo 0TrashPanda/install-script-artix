@@ -60,13 +60,12 @@ while true; do
     esac
 done
 
-# Set the keyboard layout
 while true; do
     read -p "Do you automatically want to curl the second and third part of the installer? [Y/n] : " curl_next
     case $curl_next in
-        [Y,y,yes]* ) echo "enter your ip adress:";read ip_adress; break;;
+        [Y,y,yes]* ) DOWNLOAD_NEXT=true; break;;
         [N,n,no]* ) break;;
-        * ) echo "enter your ip adress:";read ip_adress break;;
+        * ) echo "yes or no";read ip_adress break;;
     esac
 done
 
@@ -112,14 +111,14 @@ basestrap /mnt linux-lts linux-firmware
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 # download the installer_part_2.sh and installer_part_3.sh if -c is used
-if ! [ -z ${ip_adress+x} ]; then
+if ! [ -z ${DOWNLOAD_NEXT+x} ]; then
     echo "downloading installer_part_2.sh and installer_part_3.sh from $ip_adress"
     cd /mnt/
 
-    curl -o installer_part_2.sh $ip_adress:5500/artix_installer-2.sh
+    curl -o installer_part_2.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer-2.sh
     chmod +x installer_part_2.sh
 
-    curl -o installer_part_3.sh $ip_adress:5500/artix_postinstall.sh
+    curl -o installer_part_3.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_postinstall.sh
     chmod +x installer_part_3.sh
 fi
 

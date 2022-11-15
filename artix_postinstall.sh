@@ -16,7 +16,7 @@ git clone https://github.com/0TrashPanda/install-script-artix
 sudo cp /packages/install-script-artix/doas.conf /etc/doas.conf
 
 # remove sudo
-doas pacman -R sudo
+doas pacman -R --noconfirm sudo
 
 
 # install paru
@@ -39,7 +39,8 @@ doas chown admin: /etc/scripts
 
 echo "#!/bin/bash
 setcolors /etc/my-colors
-clear" > /etc/scripts/set-colors.sh
+clear
+" > /etc/scripts/set-colors.sh
 doas chmod +x /etc/scripts/set-colors.sh
 
 doas chown admin: /etc/rc.local

@@ -4,7 +4,7 @@
 sudo pacman -Syu
 
 # pacman installs
-sudo pacman -S neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust
+sudo pacman -S neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas
 
 sudo mkdir /packages
 sudo chown admin: /packages

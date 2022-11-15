@@ -60,12 +60,13 @@ while true; do
     esac
 done
 
+#TODO add yes as default option
 while true; do
-    read -p "Do you automatically want to curl the second and third part of the installer? [Y/n] : " curl_next
+    read -p "Do you automatically want to curl the second and third part of the installer? [y/n] : " curl_next
     case $curl_next in
         [Y,y,yes]* ) DOWNLOAD_NEXT=true; break;;
         [N,n,no]* ) break;;
-        * ) echo "yes or no";read ip_adress break;;
+        * ) echo "yes or no"; break;;
     esac
 done
 
@@ -127,4 +128,3 @@ read -rsn1 -p "Press any key to continue"
 echo ;
 echo "activate the 2nd installer script";
 artix-chroot /mnt
-

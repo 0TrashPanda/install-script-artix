@@ -2,7 +2,7 @@
 # prompt="%F{blue}%n%F{white}@%F{yellow}%M %F{white}in %F{green}${PWD/#$HOME/~}
 #  %F{magenta}> %F{white}"
 
-#  RPROMPT="%F{red}%?%F{white} %t"
+ RPROMPT="%F{red}%?%F{white} %t"
 
 autoload -Uz colors && colors
 
@@ -12,7 +12,7 @@ PROMPT_INFO_GIT='true'
 
 PROMPT_INFO_INDICATOR='╭─ ' # ─ ╴
 
-PROMPT_PRIMARY_INDICATOR='╰—→ ' # › ❯
+PROMPT_PRIMARY_INDICATOR='╰→ ' # › ❯
 PROMPT_SECONDARY_INDICATOR=''
 
 PROMPT_INFO_SEPERATOR=' › ' # ∙ ❯ ›

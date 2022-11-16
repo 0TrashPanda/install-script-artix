@@ -3,6 +3,8 @@
 # update the system
 sudo pacman -Syu --noconfirm
 
+test()
+
 # pacman installs
 sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas
 

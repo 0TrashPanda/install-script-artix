@@ -28,5 +28,4 @@ zsh/there-zsh/utils/zsh.zsh
 customized/artix_installer-2.sh
 customized/artix_installer.sh
 customized/artix_postinstall.sh
-test.sh
 test2.sh

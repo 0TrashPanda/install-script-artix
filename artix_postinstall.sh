@@ -1,9 +1,20 @@
 #!/bin/bash
 
-# update the system
-sudo pacman -Syu --noconfirm
+# functions
+passwd_error_check() {
+    if [ $? -ne 0 ]; then
+        echo "Error: Passwords do not match."
+        return true
+    fi
+}
 
-test()
+# update the system
+$ = false
+while $
+do
+    sudo pacman -Syu --noconfirm
+    passwd_error_check
+done
 
 # pacman installs
 sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas

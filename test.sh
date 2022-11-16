@@ -1,4 +1,4 @@
-test()
+test
 
 test() {
     echo "Hello World"

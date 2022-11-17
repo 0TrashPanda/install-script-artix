@@ -39,7 +39,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 
-paru -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git
+paru -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git autojump-rs zsh-autosuggestions
 
 
 # set terminal colors
@@ -70,6 +70,26 @@ re_doas chown admin: /etc/vconsole.conf
 echo "FONT=/etc/fonts/zap-ext-vga16.psf" >> /etc/vconsole.conf
 
 #configure zsh
+cd /packages
+git clone https://github.com/zsh-users/zsh-autosuggestions.git
+
+git clone https://github.com/anatolykopyl/doas-zsh-plugin.git
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+git clone https://github.com/zsh-users/zsh-history-substring-search.git
+
+git clone https://github.com/zsh-users/zsh-completions.git
+
+git clone git://github.com/wting/autojump.git
+cd autojump
+./install.py
+
+
+mkdir -p ~/.config
+cp /packages/install-script-artix/starship.toml ~/.config/starship.toml
+
+
 cp /packages/install-script-artix/.zshrc ~/.zshrc
 
 # change default shell to zsh

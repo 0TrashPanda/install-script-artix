@@ -39,7 +39,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 re makepkg -si
 
-paru --sudo doas -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git
+paru --sudo doas -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git starship
 
 
 # set terminal colors

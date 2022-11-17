@@ -17,7 +17,7 @@ sudo pacman -Syu --noconfirm
 
 
 # pacman installs
-sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas
+sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit
 
 sudo mkdir /packages
 sudo chown admin: /packages
@@ -97,3 +97,7 @@ re_doas chsh -s /bin/zsh
 # useradd -m -G admin sompie
 # echo "sompie:"
 # passwd sompie
+
+# setup ssh
+re_doas ln -s /etc/runit/sv/sshd /run/runit/service
+re_doas sv up sshd

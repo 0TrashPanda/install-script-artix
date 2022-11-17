@@ -19,6 +19,7 @@ sudo pacman -Syu --noconfirm
 # pacman installs
 sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit
 
+
 sudo mkdir /packages
 sudo chown admin: /packages
 
@@ -68,35 +69,12 @@ setfont /etc/fonts/zap-ext-vga16.psf
 re_doas chown admin: /etc/vconsole.conf
 echo "FONT=/etc/fonts/zap-ext-vga16.psf" >> /etc/vconsole.conf
 
-# # zsh configs
-# cd /packages
-# re_doas git clone --depth 1 https://github.com/qoomon/my-zsh.git "$HOME/.zsh" && $HOME/.zsh/install.zsh
-
 #configure zsh
 cp /packages/install-script-artix/.zshrc ~/.zshrc
-
-# # start zsh
-# echo ;
-# echo -e "${RED}EXIT THE SHELL${NORMAL}"
-# echo ;
-# zsh
 
 # change default shell to zsh
 re_doas chsh -s /bin/zsh
 
-# Make usergroups
-# groupadd owner
-# groupadd admin
-
-# useradd -m -G owner treesee
-# echo "treesee:"
-# passwd treesee
-# useradd -m -G owner jonah
-# echo "jonah:"
-# passwd jonah
-# useradd -m -G admin sompie
-# echo "sompie:"
-# passwd sompie
 
 # setup ssh
 re_doas ln -s /etc/runit/sv/sshd /run/runit/service

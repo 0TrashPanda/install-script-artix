@@ -4,6 +4,8 @@ source /packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /packages/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /packages/zsh-completions/zsh-completions.plugin.zsh
 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 alias ls="exa -l -F --header -s type"
 alias cl="clear"

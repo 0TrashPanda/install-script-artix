@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # functions
-re_doas() {
-    until doas "$@"; do
+re() {
+    until "$@"; do
         read -p "Something went wrong, do you want to try again? [Y/n] : " usr_input
         case $usr_input in
             [N,n,no]* ) break;;
@@ -30,43 +30,43 @@ git clone https://github.com/0TrashPanda/install-script-artix
 sudo cp /packages/install-script-artix/doas.conf /etc/doas.conf
 
 # remove sudo
-re_doas pacman -R --noconfirm sudo
+re doas pacman -R --noconfirm sudo
 
 
 # install paru
 cd /packages
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -si
+re makepkg -si
 
 paru -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git autojump-rs zsh-autosuggestions
 
 
 # set terminal colors
-re_doas touch /etc/my-colors
-re_doas chown admin: /etc/my-colors
+re doas touch /etc/my-colors
+re doas chown admin: /etc/my-colors
 cat /packages/install-script-artix/my-terminal-colors | tr -d '    ' > /etc/my-colors
 setcolors /etc/my-colors
 
-re_doas mkdir /etc/scripts
-re_doas chown admin: /etc/scripts
+re doas mkdir /etc/scripts
+re doas chown admin: /etc/scripts
 
 echo "#!/bin/bash
 setcolors /etc/my-colors
 clear
 " > /etc/scripts/set-colors.sh
-re_doas chmod +x /etc/scripts/set-colors.sh
+re doas chmod +x /etc/scripts/set-colors.sh
 
-re_doas chown admin: /etc/rc.local
+re doas chown admin: /etc/rc.local
 echo "/etc/scripts/set-colors.sh" >> /etc/rc.local
 
 # change font
-re_doas chown admin: /etc/fonts
+re doas chown admin: /etc/fonts
 curl -o /etc/fonts/zap-ext-vga16.psf https://www.zap.org.au/projects/console-fonts-zap/src/zap-ext-vga16.psf
 
 setfont /etc/fonts/zap-ext-vga16.psf
 
-re_doas chown admin: /etc/vconsole.conf
+re doas chown admin: /etc/vconsole.conf
 echo "FONT=/etc/fonts/zap-ext-vga16.psf" >> /etc/vconsole.conf
 
 #configure zsh
@@ -93,9 +93,9 @@ cp /packages/install-script-artix/starship.toml ~/.config/starship.toml
 cp /packages/install-script-artix/.zshrc ~/.zshrc
 
 # change default shell to zsh
-re_doas chsh -s /bin/zsh
+re doas chsh -s /bin/zsh
 
 
 # setup ssh
-re_doas ln -s /etc/runit/sv/sshd /run/runit/service
-re_doas sv up sshd
+re doas ln -s /etc/runit/sv/sshd /run/runit/service
+re doas sv up sshd

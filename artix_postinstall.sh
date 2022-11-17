@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # functions
-passwd_error_check() {
-    if [ $? -ne 0 ]; then
-        echo "Error: Passwords do not match."
-        return true
-    fi
+re_doas() {
+    until doas "$@"; do
+        read -p "Something went wrong, do you want to try again? [Y/n] : " usr_input
+        case $usr_input in
+            [N,n,no]* ) break;;
+            * ) ;;
+        esac
+    done
 }
 
+
 # update the system
-$ = false
-while $
-do
-    sudo pacman -Syu --noconfirm
-    passwd_error_check
-done
+sudo pacman -Syu --noconfirm
+
 
 # pacman installs
 sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas
@@ -29,7 +29,7 @@ git clone https://github.com/0TrashPanda/install-script-artix
 sudo cp /packages/install-script-artix/doas.conf /etc/doas.conf
 
 # remove sudo
-doas pacman -R --noconfirm sudo
+re_doas pacman -R --noconfirm sudo
 
 
 # install paru
@@ -42,35 +42,35 @@ paru -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git
 
 
 # set terminal colors
-doas touch /etc/my-colors
-doas chown admin: /etc/my-colors
+re_doas touch /etc/my-colors
+re_doas chown admin: /etc/my-colors
 cat /packages/install-script-artix/my-terminal-colors | tr -d '    ' > /etc/my-colors
 setcolors /etc/my-colors
 
-doas mkdir /etc/scripts
-doas chown admin: /etc/scripts
+re_doas mkdir /etc/scripts
+re_doas chown admin: /etc/scripts
 
 echo "#!/bin/bash
 setcolors /etc/my-colors
 clear
 " > /etc/scripts/set-colors.sh
-doas chmod +x /etc/scripts/set-colors.sh
+re_doas chmod +x /etc/scripts/set-colors.sh
 
-doas chown admin: /etc/rc.local
+re_doas chown admin: /etc/rc.local
 echo "/etc/scripts/set-colors.sh" >> /etc/rc.local
 
 # change font
-doas chown admin: /etc/fonts
+re_doas chown admin: /etc/fonts
 curl -o /etc/fonts/zap-ext-vga16.psf https://www.zap.org.au/projects/console-fonts-zap/src/zap-ext-vga16.psf
 
 setfont /etc/fonts/zap-ext-vga16.psf
 
-doas chown admin: /etc/vconsole.conf
+re_doas chown admin: /etc/vconsole.conf
 echo "FONT=/etc/fonts/zap-ext-vga16.psf" >> /etc/vconsole.conf
 
 # # zsh configs
 # cd /packages
-# doas git clone --depth 1 https://github.com/qoomon/my-zsh.git "$HOME/.zsh" && $HOME/.zsh/install.zsh
+# re_doas git clone --depth 1 https://github.com/qoomon/my-zsh.git "$HOME/.zsh" && $HOME/.zsh/install.zsh
 
 #configure zsh
 cp /packages/install-script-artix/.zshrc ~/.zshrc
@@ -82,7 +82,7 @@ cp /packages/install-script-artix/.zshrc ~/.zshrc
 # zsh
 
 # change default shell to zsh
-doas chsh -s /bin/zsh
+re_doas chsh -s /bin/zsh
 
 # Make usergroups
 # groupadd owner

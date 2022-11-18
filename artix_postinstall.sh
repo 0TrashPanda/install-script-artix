@@ -15,7 +15,6 @@ re() {
 # update the system
 sudo pacman -Syu --noconfirm
 
-
 # pacman installs
 sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw
 
@@ -26,7 +25,7 @@ cd /packages
 git clone https://github.com/0TrashPanda/install-script-artix
 
 # configure doas
-sudo cp /packages/install-script-artix/doas.conf /etc/doas.conf
+sudo cp /packages/install-script-artix/assets/doas/doas.conf /etc/doas.conf
 
 # remove sudo
 re doas pacman -R --noconfirm sudo
@@ -44,16 +43,13 @@ paru -S --noconfirm setcolors-git exa-git btop-git bat-cat-git lf-git
 # set terminal colors
 re doas touch /etc/my-colors
 re doas chown admin: /etc/my-colors
-cat /packages/install-script-artix/my-terminal-colors | tr -d '    ' > /etc/my-colors
+cat /packages/install-script-artix/assets/set-colors/my-terminal-colors | tr -d '    ' > /etc/my-colors
 setcolors /etc/my-colors
 
 re doas mkdir /etc/scripts
 re doas chown admin: /etc/scripts
 
-echo "#!/bin/bash
-setcolors /etc/my-colors
-clear
-" > /etc/scripts/set-colors.sh
+cp /packages/install-script-artix/scripts/set-colors.sh > /etc/scripts/set-colors.sh
 re doas chmod +x /etc/scripts/set-colors.sh
 
 re doas chown admin: /etc/rc.local
@@ -79,4 +75,4 @@ else
   sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 fi
 
-cat /packages/install-script-artix/.zshrc >> ~/.zshrc
+cat /packages/install-script-artix/assets/zsh/.zshrc >> ~/.zshrc

@@ -68,33 +68,15 @@ setfont /etc/fonts/zap-ext-vga16.psf
 re doas chown admin: /etc/vconsole.conf
 echo "FONT=/etc/fonts/zap-ext-vga16.psf" >> /etc/vconsole.conf
 
-#configure zsh
-cd /packages
-git clone https://github.com/zsh-users/zsh-autosuggestions.git
-
-git clone https://github.com/anatolykopyl/doas-zsh-plugin.git
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-
-git clone https://github.com/zsh-users/zsh-history-substring-search.git
-
-git clone https://github.com/zsh-users/zsh-completions.git
-
-git clone git://github.com/wting/autojump.git
-cd autojump
-./install.py
-
-
-mkdir -p ~/.config
-cp /packages/install-script-artix/starship.toml ~/.config/starship.toml
-
-
-cp /packages/install-script-artix/.zshrc ~/.zshrc
-
-# change default shell to zsh
-re doas chsh -s /bin/zsh
-
-
 # setup ssh
 re doas ln -s /etc/runit/sv/sshd /run/runit/service
 re doas sv up sshd
+
+# zsh for human installation
+if command -v curl >/dev/null 2>&1; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
+else
+  sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
+fi
+
+cat /packages/install-script-artix/.zshrc >> ~/.zshrc

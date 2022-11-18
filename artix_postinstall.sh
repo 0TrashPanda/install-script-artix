@@ -17,8 +17,7 @@ sudo pacman -Syu --noconfirm
 
 
 # pacman installs
-sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw
-
+sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw exa btop bat lf
 
 sudo mkdir /packages
 sudo chown admin: /packages
@@ -39,7 +38,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 re makepkg -si
 
-paru --sudo doas -S --noconfirm exa-git btop-git bat-cat-git lf-git glow-git setcolors-git starship
+paru -S --noconfirm setcolors-git
 
 
 # set terminal colors

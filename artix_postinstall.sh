@@ -15,8 +15,12 @@ re() {
 # update the system
 sudo pacman -Syu --noconfirm
 
+sudo wget https://github.com/archlinux/svntogit-packages/raw/packages/pacman-mirrorlist/trunk/mirrorlist -O /etc/pacman.d/mirrorlist-arch
+cat /packages/install-script-artix/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
+sudo pacman -Sy
+
 # pacman installs
-sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw
+sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
 
 sudo mkdir /packages
 sudo chown admin: /packages
@@ -37,7 +41,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 re makepkg -si
 
-re paru -S --sudo doas --noconfirm setcolors-git exa-git btop-git bat-cat-git lf-git 
+re paru -S --sudo doas --noconfirm setcolors-git
 
 
 # set terminal colors

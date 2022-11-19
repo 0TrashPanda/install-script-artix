@@ -19,8 +19,10 @@ curl https://raw.githubusercontent.com/0TrashPanda/install-script-artix/paru-to-
 
 sudo pacman -Sy --noconfirm
 
+sudo pacman -S --noconfirm archlinux-keyring
+
 # pacman installs
-re sudo pacman -S --noconfirm neovim neofetch htop wget git archlinux-keyring openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
+re sudo pacman -S --noconfirm neovim neofetch htop wget git openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
 
 
 sudo mkdir /packages

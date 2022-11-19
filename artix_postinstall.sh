@@ -15,18 +15,21 @@ re() {
 # update the system
 sudo pacman -Syu --noconfirm
 
-sudo wget https://github.com/archlinux/svntogit-packages/raw/packages/pacman-mirrorlist/trunk/mirrorlist -O /etc/pacman.d/mirrorlist-arch
-cat /packages/install-script-artix/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
-sudo pacman -Sy
-
-# pacman installs
-sudo pacman -S --noconfirm neovim neofetch htop git wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
+sudo pacman -S git wget
 
 sudo mkdir /packages
 sudo chown admin: /packages
 
 cd /packages
 git clone https://github.com/0TrashPanda/install-script-artix
+
+sudo wget https://github.com/archlinux/svntogit-packages/raw/packages/pacman-mirrorlist/trunk/mirrorlist -O /etc/pacman.d/mirrorlist-arch
+cat /packages/install-script-artix/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
+sudo pacman -Sy
+
+# pacman installs
+sudo pacman -S --noconfirm neovim neofetch htop openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
+
 
 # configure doas
 sudo cp /packages/install-script-artix/assets/doas/doas.conf /etc/doas.conf

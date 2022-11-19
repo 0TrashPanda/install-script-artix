@@ -21,13 +21,13 @@ sudo mkdir /packages
 sudo chown admin: /packages
 
 cd /packages
-git clone --branch paru-to-pacman https://github.com/0TrashPanda/install-script-artix
+re git clone --branch paru-to-pacman https://github.com/0TrashPanda/install-script-artix
 
 cat /packages/install-script-artix/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
 sudo pacman -Sy --noconfirm
 
 # pacman installs
-sudo pacman -S --noconfirm neovim neofetch htop wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
+re sudo pacman -S --noconfirm neovim neofetch htop wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
 
 
 # configure doas

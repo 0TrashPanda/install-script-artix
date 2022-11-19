@@ -28,7 +28,7 @@ git clone https://github.com/0TrashPanda/install-script-artix
 sudo cp /packages/install-script-artix/assets/doas/doas.conf /etc/doas.conf
 
 # remove sudo
-re doas pacman -R --noconfirm sudo
+re doas pacman -Rs --noconfirm sudo
 
 
 # install paru

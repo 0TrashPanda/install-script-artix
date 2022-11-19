@@ -15,20 +15,19 @@ re() {
 # update the system
 sudo pacman -Syu --noconfirm
 
-sudo pacman -S --noconfirm git archlinux-keyring
+curl https://raw.githubusercontent.com/0TrashPanda/install-script-artix/paru-to-pacman/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
+
+sudo pacman -Sy --noconfirm
+
+# pacman installs
+re sudo pacman -S --noconfirm neovim neofetch htop wget git archlinux-keyring openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
+
 
 sudo mkdir /packages
 sudo chown admin: /packages
 
 cd /packages
 re git clone --branch paru-to-pacman https://github.com/0TrashPanda/install-script-artix
-
-cat /packages/install-script-artix/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
-sudo pacman -Sy --noconfirm
-
-# pacman installs
-re sudo pacman -S --noconfirm neovim neofetch htop wget openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop
-
 
 # configure doas
 sudo cp /packages/install-script-artix/assets/doas/doas.conf /etc/doas.conf

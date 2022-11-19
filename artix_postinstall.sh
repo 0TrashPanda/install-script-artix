@@ -15,7 +15,7 @@ re() {
 # update the system
 sudo pacman -Syu --noconfirm
 
-sudo pacman -S --noconfirm git
+sudo pacman -S --noconfirm git archlinux-keyring
 
 sudo mkdir /packages
 sudo chown admin: /packages

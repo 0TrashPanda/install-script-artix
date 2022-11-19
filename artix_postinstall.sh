@@ -41,7 +41,7 @@ re doas pacman -Rs --noconfirm sudo
 # install paru
 cd /packages
 git clone https://aur.archlinux.org/paru-bin.git
-cd paru
+cd paru-bin
 re makepkg -si
 
 re paru -S --sudo doas --noconfirm setcolors-git

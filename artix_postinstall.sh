@@ -40,7 +40,7 @@ re doas pacman -Rs --noconfirm sudo
 
 # install paru
 cd /packages
-git clone https://aur.archlinux.org/paru.git
+git clone https://aur.archlinux.org/paru-bin.git
 cd paru
 re makepkg -si
 

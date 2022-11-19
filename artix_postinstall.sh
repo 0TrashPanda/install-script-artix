@@ -21,7 +21,7 @@ sudo mkdir /packages
 sudo chown admin: /packages
 
 cd /packages
-git clone https://github.com/0TrashPanda/install-script-artix
+git clone --branch paru-to-pacman https://github.com/0TrashPanda/install-script-artix
 
 sudo wget https://github.com/archlinux/svntogit-packages/raw/packages/pacman-mirrorlist/trunk/mirrorlist -O /etc/pacman.d/mirrorlist-arch
 cat /packages/install-script-artix/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null

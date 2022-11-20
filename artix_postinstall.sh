@@ -51,7 +51,7 @@ re paru -S --sudo doas --noconfirm setcolors-git
 re doas touch /etc/my-colors
 re doas chown admin: /etc/my-colors
 cat /packages/install-script-artix/assets/set-colors/my-terminal-colors | tr -d '    ' > /etc/my-colors
-setcolors /etc/my-colors
+re doas /usr/bin/setcolors /etc/my-colors
 
 re doas mkdir /etc/scripts
 re doas chown admin: /etc/scripts

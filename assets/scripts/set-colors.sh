@@ -1,3 +1,3 @@
 #!/bin/bash
-doas /usr/bin/setcolors /etc/my-colors
+/usr/bin/setcolors /etc/my-colors
 clear

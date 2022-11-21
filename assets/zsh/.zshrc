@@ -1,3 +1,5 @@
+source /packages/doas-zsh-plugin/doas.plugin.zsh
+
 alias us="loadkeys us"
 alias be="loadkeys azerty"
 alias colemak="loadkeys colemak"

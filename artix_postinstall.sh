@@ -82,4 +82,6 @@ else
   sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 fi
 
+git clone https://github.com/anatolykopyl/doas-zsh-plugin.git /packages/doas-zsh-plugin
+
 cat /packages/install-script-artix/assets/zsh/.zshrc >> ~/.zshrc

@@ -29,7 +29,7 @@ sudo mkdir /packages
 sudo chown admin: /packages
 
 cd /packages
-re git clone --branch paru-to-pacman https://github.com/0TrashPanda/install-script-artix
+re git clone https://github.com/0TrashPanda/install-script-artix
 
 # configure doas
 sudo cp /packages/install-script-artix/assets/doas/doas.conf /etc/doas.conf

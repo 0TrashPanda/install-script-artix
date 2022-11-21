@@ -85,3 +85,6 @@ fi
 git clone https://github.com/anatolykopyl/doas-zsh-plugin.git /packages/doas-zsh-plugin
 
 cat /packages/install-script-artix/assets/zsh/.zshrc >> ~/.zshrc
+
+sed -i '/z4h bindkey z4h-backward-kill-word  Ctrl+Backspace     Ctrl+H/d' ~/.zshrc
+sed -i "s/command tmux -u new -A -D -t z4h/command tmux -2 -u new -A -D -t z4h/" ~/.zshrc

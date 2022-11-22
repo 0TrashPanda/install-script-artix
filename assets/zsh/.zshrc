@@ -1,3 +1,5 @@
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
 source /packages/doas-zsh-plugin/doas.plugin.zsh
 
 alias us="loadkeys us"

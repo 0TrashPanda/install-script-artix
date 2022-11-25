@@ -60,8 +60,6 @@ while true; do
     esac
 done
 
-DOWNLOAD_NEXT=true
-
 EFI=0
 
 DIR="/sys/firmware/efi/efivars/"
@@ -101,17 +99,14 @@ basestrap /mnt linux-lts linux-firmware
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
-# download the installer_part_2.sh and installer_part_3.sh if -c is used
-if ! [ -z ${DOWNLOAD_NEXT+x} ]; then
-    echo "downloading installer_part_2.sh and installer_part_3.sh from $ip_adress"
-    cd /mnt/
+# download the installer_part_2.sh and installer_part_3.sh
+cd /mnt/
 
-    curl -o installer_part_2.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer-2.sh
-    chmod +x installer_part_2.sh
+curl -o installer_part_2.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer-2.sh
+chmod +x installer_part_2.sh
 
-    curl -o installer_part_3.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_postinstall.sh
-    chmod +x installer_part_3.sh
-fi
+curl -o installer_part_3.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_postinstall.sh
+chmod +x installer_part_3.sh
 
 # beep -f 5000 -l 50 -r 2
 read -rsn1 -p "Press any key to continue"

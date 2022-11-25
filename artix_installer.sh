@@ -60,17 +60,7 @@ while true; do
     esac
 done
 
-#TODO add yes as default option
-while true; do
-    read -p "Do you automatically want to curl the second and third part of the installer? [y/n] : " curl_next
-    case $curl_next in
-        [Y,y,yes]* ) DOWNLOAD_NEXT=true; break;;
-        [N,n,no]* ) break;;
-        * ) echo "yes or no"; break;;
-    esac
-done
-
-
+DOWNLOAD_NEXT=true
 
 EFI=0
 

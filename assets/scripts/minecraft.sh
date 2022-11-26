@@ -16,5 +16,5 @@ chmod u+x /srv/minecraft/lobby/start.sh
 echo "java -jar waterfall-19.jar" > /srv/minecraft/waterfall/start.sh
 chmod u+x /srv/minecraft/waterfall/start.sh
 
-cp /packages/minecraft/assets/scripts/tmux_steve.sh /srv/minecraft/start.sh
+cp /packages/install-script-artix/assets/scripts/tmux_steve.sh /srv/minecraft/start.sh
 chmod u+x /srv/minecraft/start.sh

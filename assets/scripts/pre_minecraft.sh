@@ -4,6 +4,7 @@ doas mkdir -p /srv/minecraft
 
 doas useradd -d /srv/minecraft steve
 
+echo "changing the password for steve"
 doas passwd steve
 
 doas chown steve /srv/minecraft

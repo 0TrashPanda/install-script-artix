@@ -18,3 +18,5 @@ chmod u+x /srv/minecraft/waterfall/start.sh
 
 cp /packages/install-script-artix/assets/scripts/tmux_steve.sh /srv/minecraft/start.sh
 chmod u+x /srv/minecraft/start.sh
+
+/packages/install-script-artix/assets/scripts/zsh-installer.sh

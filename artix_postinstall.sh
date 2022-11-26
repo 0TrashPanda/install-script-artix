@@ -22,8 +22,9 @@ sudo pacman -Sy --noconfirm
 sudo pacman -S --noconfirm archlinux-keyring
 
 # pacman installs
-re sudo pacman -S --noconfirm neovim neofetch htop wget git openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop duf
+re sudo pacman -S --noconfirm neovim neofetch htop wget git openssh ripgrep fzf zsh mandoc tmux python-pip rust doas w3m openssh-runit cmake ufw lf bat exa btop duf openntpd-runit
 
+re doas ntpd
 
 sudo mkdir /packages
 sudo chown admin: /packages

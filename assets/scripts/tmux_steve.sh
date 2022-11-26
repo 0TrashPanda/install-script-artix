@@ -1,13 +1,12 @@
-tmx () {
-    # Use -d to allow the rest of the function to run
-    tmux new-session -d -s minecraft
-    tmux new-window -n extra-window
-    # -d to prevent current window from changing
-    tmux new-window -d -n waterfall
-    tmux new-window -d -n lobby
-    tmux new-window -d -n skyblock
-    tmux new-window -d -n survival
-    # -d to detach any other client (which there shouldn't be,
-    # since you just created the session).
-    tmux attach-session -d -t minecraft
-}
+#!/bin/bash
+
+tmux has-session -t minecraft
+if [ $? != 0 ]
+then
+    tmux new-session -d -s minecraft -n Win0 -c /srv/minecraft
+fi
+tmux neww -n waterfall -c /srv/minecraft/waterfall -d -t minecraft -k
+tmux neww -n lobby -c /srv/minecraft/lobby -d -t minecraft -k
+tmux neww -n survival -c /srv/minecraft/suvival -d -t minecraft -k
+tmux neww -n skyblock -c /srv/minecraft/skyblock -d -t minecraft -k
+tmux attach -t minecraft

@@ -16,15 +16,5 @@ chmod u+x /srv/minecraft/lobby/start.sh
 echo "java -jar waterfall-19.jar" > /srv/minecraft/waterfall/start.sh
 chmod u+x /srv/minecraft/waterfall/start.sh
 
-tmx () {
-    # Use -d to allow the rest of the function to run
-    tmux new-session -d -s minecraft
-    tmux new-window -n extra-window
-    # -d to prevent current window from changing
-    tmux new-window -d -n waterfall
-    tmux new-window -d -n lobby
-    tmux new-window -d -n skyblock
-    tmux new-window -d -n survival
-}
-
-echo "tmux attach-session -d -t minecraft" > /srv/minecraft/start.sh
+cp /packages/minecraft/assets/scripts/tmux_steve.sh /srv/minecraft/start.sh
+chmod u+x /srv/minecraft/start.sh

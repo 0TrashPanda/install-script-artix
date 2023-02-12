@@ -58,15 +58,8 @@ while true; do
     esac
 done
 
-EFI=0
-
-DIR="/sys/firmware/efi/efivars/"
-if [ -d "$DIR" ]; then
-    # Take action if $DIR exists. #
-    echo "you are in efi boot mode"
-    EFI=1
-fi
-
+curl -o installer_part_2.sh -k https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_ufi_2.sh
+chmod +x installer_part_2.sh
 
 # Partition your disk (BIOS)
 read -rsn1 -p "create two partitions
@@ -75,39 +68,17 @@ read -rsn1 -p "create two partitions
 
     2) the rest of the disk for root
 
-    press any key to continue";
-cfdisk
+    cfdisk
 
-# Format partitions (BIOS)
-mkfs.ext4 /dev/sda2
+    # Format partitions (BIOS)
+    mkfs.ext4 /dev/sda2
 
-# Mount Partitions
-mount /dev/sda2 /mnt
-mount --mkdir /dev/sda1 /mnt/boot
+    # Mount Partitions
+    mount /dev/sda2 /mnt
+    mount --mkdir /dev/sda1 /mnt/boot
 
-# Update the system clock
-ln -s /etc/runit/sv/ntpd/ /run/runit/service
-sv up ntpd
+    press any key to continue
+";
 
-# Install base system
-basestrap /mnt base base-devel runit elogind-runit
 
-# Install a kernel
-basestrap /mnt linux-lts linux-firmware
 
-fstabgen -U /mnt >> /mnt/etc/fstab
-
-# download the installer_part_2.sh and installer_part_3.sh
-cd /mnt/
-
-curl -o installer_part_2.sh -k https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer-2.sh
-chmod +x installer_part_2.sh
-
-curl -o installer_part_3.sh -k https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_postinstall.sh
-chmod +x installer_part_3.sh
-
-# beep -f 5000 -l 50 -r 2
-read -rsn1 -p "Press any key to continue"
-echo ;
-echo "activate the 2nd installer script";
-artix-chroot /mnt

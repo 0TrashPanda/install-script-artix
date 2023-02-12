@@ -15,7 +15,7 @@ re() {
 # update the system
 sudo pacman -Syu --noconfirm
 
-curl https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
+curl -k https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/assets/pacman/pacman.conf | sudo tee -a /etc/pacman.conf > /dev/null
 
 sudo pacman -Sy --noconfirm
 

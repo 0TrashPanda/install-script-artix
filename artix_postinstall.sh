@@ -1,16 +1,27 @@
 #!/bin/bash
 
 # functions
+inter() {
+    until false; do
+        read -p "Do you want to return to the script? [y/N] : " usr_input
+        case $usr_input in
+            [Y,y,yes]* ) break;;
+            * ) ;;
+        esac
+        $usr_input
+    done
+}
+
 re() {
     until "$@"; do
-        read -p "Something went wrong, do you want to try again? [Y/n] : " usr_input
+        read -p "Something went wrong, do you want to try again? [Y/n/i] : " usr_input
         case $usr_input in
             [N,n,no]* ) break;;
+            [I,i,inter]* ) echo "command: $@"; inter;;
             * ) ;;
         esac
     done
 }
-
 
 # update the system
 sudo pacman -Syu --noconfirm

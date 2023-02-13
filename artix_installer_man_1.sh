@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Functions
+inter() {
+    until false; do
+        read -p "Do you want to return to the script? [y/N] : " usr_input
+        case $usr_input in
+            [Y,y,yes]* ) break;;
+            * ) ;;
+        esac
+        $usr_input
+    done
+}
+
 while getopts 'h' OPTION; do
   case "$OPTION" in
     h)
@@ -58,9 +70,6 @@ while true; do
     esac
 done
 
-curl -o installer_part_2.sh -k https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_ufi_2.sh
-chmod +x installer_part_2.sh
-
 # Partition your disk (BIOS)
 read -rsn1 -p "create two partitions
     1) 1Mib boot partition
@@ -80,5 +89,32 @@ read -rsn1 -p "create two partitions
     press any key to continue
 ";
 
+# Enter interactive prompt
+inter
 
+# Update the system clock
+ln -s /etc/runit/sv/ntpd/ /run/runit/service
+sv up ntpd
 
+# Install base system
+basestrap /mnt base base-devel runit elogind-runit
+
+# Install a kernel
+basestrap /mnt linux-lts linux-firmware
+
+fstabgen -U /mnt >> /mnt/etc/fstab
+
+# download the installer_part_2.sh and installer_part_3.sh
+cd /mnt/
+
+curl -o installer_p2.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_man_2.sh
+chmod +x installer_p2.sh
+
+curl -o installer_pp.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_postinstall.sh
+chmod +x installer_pp.sh
+
+# beep -f 5000 -l 50 -r 2
+read -rsn1 -p "Press any key to continue"
+echo ;
+echo "activate the 2nd installer script";
+artix-chroot /mnt

@@ -43,6 +43,13 @@ NORMAL='\033[0m'
 clear
 
 echo -e "
+${NORMAL}
+    ██████  ██    ██ ██████  ██    ██
+    ██   ██ ██    ██ ██   ██  ██  ██
+    ██████  ██    ██ ██████    ████
+    ██   ██ ██    ██ ██   ██    ██
+    ██   ██  ██████  ██████     ██
+
     ${RED} █████  ${GREEN}██████  ${BLUE}████████ ${MAGENTA}██ ${LIGHT_BLEU}██   ██
     ${RED}██   ██ ${GREEN}██   ██ ${BLUE}   ██    ${MAGENTA}██ ${LIGHT_BLEU} ██ ██
     ${RED}███████ ${GREEN}██████  ${BLUE}   ██    ${MAGENTA}██ ${LIGHT_BLEU}  ███
@@ -58,6 +65,8 @@ ${ORANGE}
 ${NORMAL}
 "
 
+echo "Thank you for choosing our Artix Linux instalation script!";
+
 # Set the keyboard layout
 while true; do
     read -p "Colemak(C) | qwerty(Q) | azerty(A) | skip(S) : " kb_layout
@@ -70,21 +79,18 @@ while true; do
     esac
 done
 
-# Partition your disk (BIOS)
-read -rsn1 -p "create two partitions
-    1) 1Mib boot partition
-        and change the type to BIOS boot
+# Partition your disk
+read -rsn1 -p "# Please remember to do all things listed below manualy .. = custom path
+    # Create the partitions
+    cfdisk /dev/..
 
-    2) the rest of the disk for root
-
-    cfdisk
-
-    # Format partitions (BIOS)
-    mkfs.ext4 /dev/sda2
+    # Format partitions
+    mkfs.ext4 /dev/..
+    mkfs.fat -F 32 /dev/..
 
     # Mount Partitions
-    mount /dev/sda2 /mnt
-    mount --mkdir /dev/sda1 /mnt/boot
+    mount /dev/.. /mnt
+    mount --mkdir /dev/.. /mnt/boot
 
     press any key to continue
 ";

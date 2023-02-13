@@ -31,6 +31,13 @@ NORMAL='\033[0m'
 clear
 
 echo -e "
+${NORMAL}
+    ██████  ██    ██ ██████  ██    ██
+    ██   ██ ██    ██ ██   ██  ██  ██
+    ██████  ██    ██ ██████    ████
+    ██   ██ ██    ██ ██   ██    ██
+    ██   ██  ██████  ██████     ██
+
     ${RED} █████  ${GREEN}██████  ${BLUE}████████ ${MAGENTA}██ ${LIGHT_BLEU}██   ██
     ${RED}██   ██ ${GREEN}██   ██ ${BLUE}   ██    ${MAGENTA}██ ${LIGHT_BLEU} ██ ██
     ${RED}███████ ${GREEN}██████  ${BLUE}   ██    ${MAGENTA}██ ${LIGHT_BLEU}  ███
@@ -45,6 +52,8 @@ ${ORANGE}
     ██ ██   ████ ███████    ██    ██   ██ ███████ ███████ ███████ ██   ██
 ${NORMAL}
 "
+
+echo "Thank you for choosing our Artix Linux instalation script!";
 
 # Set the keyboard layout
 while true; do

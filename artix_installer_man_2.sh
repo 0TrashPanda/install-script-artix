@@ -41,8 +41,8 @@ locale-gen
 
 # Boot Loader (BIOS)
 read -rsn1 -p "please do your grub installation manualy
-    grub-install --target=i386-pc /dev/sda
-    grub-mkconfig -o /boot/grub/grub.cfg
+    grub-install ..
+    grub-mkconfig ..
 
     press any key to continue
 ";

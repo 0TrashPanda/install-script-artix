@@ -37,7 +37,7 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen;
 
 locale-gen
 
-pacman -S --noconfirm grub efibootmgr dhcpcd connman-runit connman-gtk
+pacman -S --noconfirm grub efibootmgr dhcpcd connman-runit
 
 # Boot Loader (BIOS)
 read -rsn1 -p "please do your grub installation manualy

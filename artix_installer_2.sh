@@ -16,7 +16,7 @@ echo "enter hostname:"
 read hostname
 echo "you entered $hostname"
 
-pacman -S --noconfirm grub dhcpcd connman-runit connman-gtk
+pacman -S --noconfirm grub dhcpcd connman-runit 
 
 # Configure the system clock
 ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime

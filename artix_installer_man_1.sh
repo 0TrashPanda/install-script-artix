@@ -90,7 +90,7 @@ read -rsn1 -p "# Please remember to do all things listed below manualy .. = cust
 
     # Mount Partitions
     mount /dev/.. /mnt
-    mount --mkdir /dev/.. /mnt/boot
+    mount --mkdir /dev/.. /mnt/boot/efi
 
     press any key to continue
 ";

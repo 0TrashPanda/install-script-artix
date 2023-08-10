@@ -28,8 +28,6 @@ echo "enter hostname:"
 read hostname
 echo "you entered $hostname"
 
-pacman -S --noconfirm grub dhcpcd connman-runit connman-gtk
-
 # Configure the system clock
 ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 hwclock --systohc
@@ -39,10 +37,14 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen;
 
 locale-gen
 
+pacman -S --noconfirm grub efibootmgr dhcpcd connman-runit connman-gtk
+
 # Boot Loader (BIOS)
 read -rsn1 -p "please do your grub installation manualy
-    grub-install ..
-    grub-mkconfig ..
+    BIOS> grub-install --recheck /dev/sda
+    UEFI> grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
+
+    grub-mkconfig -o /boot/grub/grub.cfg
 
     press any key to continue
 ";

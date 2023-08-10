@@ -16,19 +16,19 @@ loadkeys colemak
 Curl the correct version of the script:
 
 ```bash
-curl -o installer_p1.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_p1.sh
+curl -o installer_1.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_1.sh
 ```
 
 Change its execution policies:
 
 ```bash
-chmod +x installer_p1.sh
+chmod +x installer_1.sh
 ```
 
 and run it:
 
 ```bash
-./installer_p1.sh
+./installer_1.sh
 ```
 
 It will tell you what to do from this point forward.
@@ -36,12 +36,12 @@ It will tell you what to do from this point forward.
 ## Standard
 
 Made to automate the grub process on BIOS boot systems
-uses > `artix_installer_p1.sh`
+uses > `artix_installer_1.sh`
 
 ## Manual grub
 
 Made to automate process on systems without doing grub automatically
-uses > `artix_installer_man_p1.sh`
+uses > `artix_installer_man_1.sh`
 mainly used for UEFI systems.
 
 ## Post install
@@ -54,6 +54,19 @@ manly does the basic setup for servers
 
 If you get the`curl failed to verify the legitimacy` error
 please make sure your hardware clock int wrong.
+
+```bash
+hwclock
+```
+
+if it shows the wrong time please try setting it
+
+```bash
+hwclock --set --date="month/day/year hour:minute:second"
+hwclock --hctosys
+```
+
+now when you try again it should work.
 
 ## Assets
 

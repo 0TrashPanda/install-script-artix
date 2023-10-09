@@ -85,8 +85,13 @@ lsblk
 # Prompt the user to select a disk for installation
 read -rp "Enter the disk where you want to install (e.g., /dev/sda): " install_disk
 
-# Create partitions using fdisk
-(echo o; echo n; echo p; echo 1; echo ''; echo +512M; echo t; echo 1; echo n; echo p; echo 2; echo ''; echo ''; echo w) | fdisk "$install_disk"
+# Automatically create two partitions (EFI and filesystem) with cfdisk
+echo "Creating partitions on $install_disk..."
+cfdisk -z "$install_disk" <<EOF
+gpt
+EFI::0.5G
+::0
+EOF
 
 # Format partitions
 mkfs.fat -F32 "${install_disk}1"
@@ -96,6 +101,8 @@ mkfs.ext4 "${install_disk}2"
 mount "${install_disk}2" /mnt
 mkdir -p /mnt/boot/efi
 mount "${install_disk}1" /mnt/boot/efi
+
+
 
 # Update the system clock
 ln -s /etc/runit/sv/ntpd/ /run/runit/service

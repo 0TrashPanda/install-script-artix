@@ -85,13 +85,9 @@ lsblk
 # Prompt the user to select a disk for installation
 read -rp "Enter the disk where you want to install (e.g., /dev/sda): " install_disk
 
-# Automatically create two partitions (EFI and filesystem) with cfdisk
-echo "Creating partitions on $install_disk..."
-cfdisk -z "$install_disk" <<EOF
-gpt
-EFI::0.5G
-::0
-EOF
+# todo: automate
+# Create two partitions (EFI and filesystem) with cfdisk
+cfdisk "$install_disk"
 
 # Format partitions
 mkfs.fat -F32 "${install_disk}1"

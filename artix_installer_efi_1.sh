@@ -85,6 +85,13 @@ lsblk
 # Prompt the user to select a disk for installation
 read -rp "Enter the disk where you want to install (e.g., /dev/sda): " install_disk
 
+read -rsn1 -p "# Create the partitions
+    ${install_disk}1 > 512MiB > efi system partition
+    ${install_disk}2 > linux file system (Default)
+
+    press any key to continue
+";
+
 # todo: automate
 # Create two partitions (EFI and filesystem) with cfdisk
 cfdisk "$install_disk"

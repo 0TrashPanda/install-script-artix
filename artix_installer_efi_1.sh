@@ -115,7 +115,7 @@ fstabgen -U /mnt >> /mnt/etc/fstab
 # download the installer_part_2.sh and installer_part_3.sh
 cd /mnt/
 
-curl -o installer_p2.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_man_2.sh
+curl -o installer_p2.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_installer_efi_2.sh
 chmod +x installer_p2.sh
 
 curl -o installer_pp.sh https://raw.githubusercontent.com/0TrashPanda/install-script-artix/master/artix_postinstall.sh

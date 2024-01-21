@@ -112,7 +112,7 @@ ln -s /etc/runit/sv/ntpd/ /run/runit/service
 sv up ntpd
 
 # Install base system
-basestrap /mnt base base-devel runit elogind-runit
+basestrap /mnt base runit elogind-runit 
 
 # Install a kernel
 basestrap /mnt linux-lts linux-firmware

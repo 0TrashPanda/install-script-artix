@@ -37,7 +37,7 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen;
 
 locale-gen
 
-pacman -S --noconfirm grub efibootmgr dhcpcd connman-runit connman-gtk
+pacman -S --noconfirm grub efibootmgr dhcpcd connman-runit connman-gtk doas
 
 # Pray for grub to not fail
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
@@ -55,7 +55,7 @@ echo "enter admin password:"
 passwd admin
 
 # beep -f 5000 -l 50 -r 2
-echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers;
+echo "permit persist :wheel" >> /etc/doas.conf;
 
 # Network configuration
 echo "$hostname" > /etc/hostname;
